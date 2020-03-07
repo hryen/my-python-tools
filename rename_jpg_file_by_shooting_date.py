@@ -1,11 +1,14 @@
+# 将一个目录下的所有JPG和JPEG图片以拍摄日期重命名,例如: 20150506_123423_0000.jpg
+# 2020.3.7
+
 import os
 import exifread
 import random
 
-# !!! 使用"/"结尾
-# !!! Windows请使用"/"
-# 将一个目录下的所有JPG和JPEG图片以拍摄日期重命名,例如: 20150506_123423_0000.jpg
-path = "E:/backup/photos/jpg/"
+path = input("Path: ")
+path = path.replace("\\", "/")
+if not path.endswith("/"):
+    path = path + "/"
 
 dir_list = os.listdir(path)
 
@@ -27,7 +30,7 @@ for file in dir_list:
 
         dst_name = str(shooting_date).replace(":", "").replace(" ", "_")
 
-        random_int = random.randint(1000, 9999)
+        random_int = str(random.randint(1000, 9999))
 
         src_extension = os.path.splitext(file)[1].lower()
 
